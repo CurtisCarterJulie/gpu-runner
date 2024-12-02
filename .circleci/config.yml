@@ -1,19 +1,15 @@
 version: 2.1
-
-orbs:
-  node: circleci/node@6.3.0
-
 jobs:
-  install-node-example:
+  build:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/ruby:2.6
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+    parallelism: 15
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-          node-version: '16.13'
-      - run: node --version
-workflows:
-  test_my_app:
-    jobs:
-      - install-node-example
+      - run: 
+          name: Build packages
+          command: |
+                 nproc
