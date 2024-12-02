@@ -1,9 +1,9 @@
 version: 2.1
-
 jobs:
-  install-node-example:
+  build:
     docker:
       - image: cimg/base:stable
+    parallelism: 15
     steps:
       - checkout
       - node/install:
